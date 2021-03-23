@@ -1,13 +1,16 @@
 <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #1a1a1a;">
   <div class="container-fluid">
-    <a class="navbar-brand text-light" href="#">Day Zero</a>
+     <%= link_to "Day Zero", home_path, class: "navbar-brand", id: "logo" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item">
             <%= link_to "home", home_path, class: "nav-link text-light" %>
+            </li>
+            <li class="nav-item">
+            <%= link_to "categories", categories_path, class: "nav-link text-light" %>
             </li>
             <li class="nav-item">
             <%= link_to "about", about_path, class: "nav-link text-light" %>

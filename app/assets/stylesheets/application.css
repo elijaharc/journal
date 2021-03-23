@@ -14,8 +14,20 @@
  *= require_self
  */
 
-html,
 body {
   font-family: "Work Sans", sans-serif !important;
-  background-color: #64646c;
+  background-color: #e6e6e6 !important;
+}
+
+#logo {
+  color: white;
+  float: left;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: 500;
+}
+
+#logo:hover {
+  color: #e6e6e6;
+  text-decoration: none;
 }
