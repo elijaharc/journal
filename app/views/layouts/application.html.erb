@@ -15,9 +15,12 @@
   </head>
 
   <body>
+ 
     <%= render 'layouts/navbar' %>
-    <%= notice %>
+     <%# < class="container"><%= render 'devise/shared/notice' %> 
+    <%= notice %> 
     <%= alert %>
+
     <%= yield %>
   </body>
 </html>

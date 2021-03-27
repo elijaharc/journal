@@ -1,0 +1,30 @@
+<h1 class="text-center mt-4">Showing all your tasks</h1>
+
+<div class="container">
+<% @tasks.each do |task| %>
+    <div class="row justify-content-center">
+        <div class="col-10 col-lg-6 mt-4">
+            <div class="card text-center shadow mb-5 bg-body rounded">
+                <div class="card-header" id="authorItalic">By 
+                    <%= current_user.username %>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title"><%= link_to task.item, task_path(task) %></h2>
+                    <p class="card-text"><%= truncate(task.description, length: 100) %></p>
+                    <%= link_to "View", task_path(task), class: "btn btn-outline-success" %>
+                    <%= link_to "Edit", edit_task_path(task), class: "btn btn-outline-secondary" %>
+                    <%= link_to 'Delete', task_path(task), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
+                </div>
+                <div class="card-footer text-muted">
+                    <small>Created <%= time_ago_in_words(task.created_at) %> ago, edited <%= time_ago_in_words(task.updated_at) %> ago</small>
+                </div>
+            </div>
+        </div>
+    </div>
+<%end%>
+
+</div>
+
+
+
+
