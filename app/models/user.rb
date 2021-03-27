@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :tasks
   validates :username, presence: true
   validates :username, uniqueness: true, if: -> { self.username.present? } 
   # Include default devise modules. Others available are:
