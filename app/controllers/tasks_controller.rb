@@ -8,7 +8,7 @@ class TasksController < ApplicationController
   def index
     @user = current_user
     # @tasks = current_user.tasks.order('created_at desc')
-    @tasks = Task.paginate(page: params[:page], per_page: 3).order('created_at desc')
+    @tasks = current_user.tasks.paginate(page: params[:page], per_page: 3).order('created_at desc')
   end
 
   # GET /tasks/1 or /tasks/1.json
