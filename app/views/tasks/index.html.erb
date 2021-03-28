@@ -1,5 +1,8 @@
 <h1 class="text-center mt-4">Showing all your tasks</h1>
 
+<%= will_paginate @tasks, list_classes: %w(pagination justify-content-center mt-2 btn-sm) %>
+
 <%= render 'task' %>
 
-<%= will_paginate @tasks %>
+<%= will_paginate @tasks, list_classes: %w(pagination justify-content-center) %>
+
