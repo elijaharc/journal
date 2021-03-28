@@ -1,5 +1,5 @@
-<%= form_with(model: task) do |form| %>
-  <%= render 'shared/errors', obj: @task %>
+<%= form_for([@task.category, @task]) do |form| %>
+  <%= render 'shared/errors', obj: @task%>
 
   <div class="field">
     <%= form.label :item %>
@@ -8,7 +8,7 @@
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_field :description %>
   </div>
 
   <div class="actions">

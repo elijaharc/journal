@@ -9,8 +9,8 @@
         <% if user_signed_in? %>
             <h2 class="text-dark display-2">Hello, <%= current_user.first_name.capitalize %>!</h2>
             <p class="text-secondary">What do you want to do today?</p>
-            <%= link_to "See today's tasks", tasks_path, class: "btn btn-primary text-light" %>
-            <%= link_to "Create a new task", new_task_path, class: "btn btn-primary text-light" %>
+            <%# <%= link_to "See today's tasks", category_tasks_path, class: "btn btn-primary text-light" %>
+            <%= link_to "Create a new task", new_category_path, class: "btn btn-primary text-light" %>
         <% else %>
             <p class="mt-3 text-dark">Click the 'Log In' or 'Sign Up' button to begin</p>
             <p class="lead">

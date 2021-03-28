@@ -1,15 +1,6 @@
-<h1 class="text-center mt-4">Showing all your tasks</h1>
-
-<div class="text-center fw-light">
-  <%= page_entries_info @tasks %>
-</div>
-
 <% @tasks.each_with_index do |task, index| %>
     <% if index > 1 %>
         <%= will_paginate @tasks, list_classes: %w(pagination justify-content-center mt-2 btn-sm) %>
     <% end %>
 <% end %>
-
-<%= render 'task' %>
-
 <%= will_paginate @tasks, list_classes: %w(pagination justify-content-center) %>

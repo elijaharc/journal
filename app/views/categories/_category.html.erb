@@ -1,5 +1,5 @@
 <div class="container">
-<% @tasks.each do |task| %>
+<% @categories.each do |category| %>
     <div class="row justify-content-center">
         <div class="col-10 col-lg-6 mt-4">
             <div class="card text-center shadow mb-5 bg-body rounded">
@@ -7,14 +7,15 @@
                     <%= current_user.username %>
                 </div>
                 <div class="card-body">
-                    <h2 class="card-title"><%= task.item %></h2>
-                    <p class="card-text"><%= truncate(task.description, length: 100) %></p>
+                    <h2 class="card-title"><%= category.category_name %></h2>
+                    <p class="card-text"><%= truncate(category.description, length: 100) %></p>
+                    <%= link_to "Create new task", new_category_task_path(category), class: "btn btn-outline-success" %>
                     <%# <%= link_to "View", category_task_path(task), class: "btn btn-outline-success" %> 
                     <%# <%= link_to "Edit", edit_category_task_path(task), class: "btn btn-outline-secondary" %>
                     <%# <%= link_to 'Delete', task_path(task), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger" %> 
                 </div>
                 <div class="card-footer text-muted">
-                    <small>Created <%= time_ago_in_words(task.created_at) %> ago, edited <%= time_ago_in_words(task.updated_at) %> ago</small>
+                    <small>Created <%= time_ago_in_words(category.created_at) %> ago, edited <%= time_ago_in_words(category.updated_at) %> ago</small>
                 </div>
             </div>
         </div>
