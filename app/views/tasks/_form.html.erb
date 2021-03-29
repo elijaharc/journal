@@ -10,6 +10,10 @@
     <%= form.label :description %>
     <%= form.text_field :description %>
   </div>
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status, Task::STATUS_OPTIONS %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

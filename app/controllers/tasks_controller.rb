@@ -31,22 +31,18 @@ class TasksController < ApplicationController
     @task = @category.tasks.build(task_params)
 
     if @task.save
-        redirect_to([@task.category, @task], notice: "Task was succesfully created.")
+        redirect_to(@task.category)   
     else
-       render action: 'edit'
+       render action: 'new'
     end
   end
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
-    respond_to do |format|
-      if @task.update(task_params)
-        format.html { redirect_to category_task_path(@category), notice: "Task was successfully updated." }
-        format.json { render :show, status: :ok, location: @task }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if @task.update(task_params)
+        redirect_to(@task.category)   
+    else
+       render action: 'edit'
     end
   end
 

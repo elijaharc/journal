@@ -10,3 +10,36 @@
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>
+<hr>
+
+<h1>Create New Task</h1>
+
+<%= render 'tasks/form', task: @task %>
+
+<hr>
+
+<table>
+  <tr>
+    <th>Task</th>
+    <th>Description</th>
+    <th>Status</th>
+
+  </tr>
+
+<% @category.tasks.each do |task| %>
+  <% if task.persisted? %>
+  <tr>
+    <td><%= task.item %></td>
+    <td><%= task.description %></td>
+    <td><%= task.status %></td>
+    <td><%= link_to 'Show', [task.category, task]%></td>
+    <td><%= link_to 'Edit', edit_category_task_path(task.category, task)%></td>
+    <td><%= link_to 'Destroy', [task.category, task], method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Task', new_category_task_path(@category.id) %>
