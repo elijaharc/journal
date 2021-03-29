@@ -1,21 +1,21 @@
 <%= form_for([@task.category, @task]) do |form| %>
   <%= render 'shared/errors', obj: @task%>
 
-  <div class="field">
+  <div class="form-group mb-3">
     <%= form.label :item %>
-    <%= form.text_field :item %>
+    <%= form.text_field :item, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group mb-3">
     <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.text_field :description, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.select :status, Task::STATUS_OPTIONS %>
+  <div class="form-group mb-3">
+    <%= form.label :status %> <br>
+    <%= form.select :status, Task::STATUS_OPTIONS, {}, class: 'form-control form-select w-25 mb-4' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions d-flex justify-content-center">
+    <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>

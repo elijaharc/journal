@@ -1,5 +1,13 @@
-<h1>New Category</h1>
+<div class="card mt-5">
+    <div class="card-body">
+        <h2 class="card-title mb-4">
+            <span>New journal category</span>
+        </h2>
+        <%= render 'form', category: @category %>
+    </div>
+</div>
 
-<%= render 'form', category: @category %>
+<div class="text-center mt-2">
+    <%= link_to 'Back', categories_path, class: 'mx-auto' %>
+</div>
 
-<%= link_to 'Back', categories_path %>

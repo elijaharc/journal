@@ -31,3 +31,19 @@ body {
   color: #e6e6e6;
   text-decoration: none;
 }
+
+.category-card {
+  transition: background-color 0.5s ease;
+}
+
+.category-card:hover {
+  background-color: #f7f7f7;
+}
+
+.task-card {
+  transition: background-color 0.5s ease;
+}
+
+.task-card:hover {
+  background-color: #f7f7f7;
+}

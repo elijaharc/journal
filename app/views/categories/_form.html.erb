@@ -1,17 +1,17 @@
 <%= form_with(model: category) do |form| %>
   <%= render 'shared/errors', obj: @category%>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :category_name %>
-    <%= form.text_field :category_name %>
+    <%= form.text_field :category_name, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group mt-2">
     <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.text_field :description, class: 'form-control', placeholder: 'Optional' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions mt-4 text-center">
+    <%= form.submit class: 'btn btn-success btn-sm' %>
   </div>
 <% end %>

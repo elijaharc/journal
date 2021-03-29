@@ -1,7 +1,12 @@
-<h1>Editing Task</h1>
+<div class="card mt-5">
+    <div class="card-body">
+        <h2 class="card-title mb-4">
+            <span>Edit Task</span>
+        </h2>
+        <%= render 'form', category: @category %>
+    </div>
+</div>
 
-<%= render 'form', task: @task %>
-
-<%= link_to 'Show', @category_task %> |
-<%= link_to 'Back', category_tasks_path %>
-
+<div class="text-center mt-2">
+    <%= link_to 'Back', @category, class: 'mx-auto' %>
+</div>
