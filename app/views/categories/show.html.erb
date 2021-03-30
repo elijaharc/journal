@@ -1,15 +1,27 @@
 <div class="card shadow-sm rounded mt-5">
   <div class="card-body">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb fw-light">
+        <li class="breadcrumb-item"><%= link_to 'Home', home_path, class: "text-decoration-none" %></li>
+        <li class="breadcrumb-item"><%= link_to 'Journals', categories_path, class: "text-decoration-none" %></li>
+        <li class="breadcrumb-item active" aria-current="tasks"><%= @category.category_name %></li>
+      </ol>
+    </nav>
     <h2 class="card-title d-flex justify-content-between">
-      <span><%= @category.category_name %></span>
+      <span class='display-5 fw-normal'><%= @category.category_name %></span>
       <div>
-       <%= link_to 'Edit', edit_category_path(@category), class: 'btn btn-light btn-sm' %>
-        <%= link_to 'Delete', @category, method: :delete, class: 'btn btn-secondary btn-sm', data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Edit', edit_category_path(@category), class: 'btn btn-secondary btn-sm' %>
+        <%= link_to 'Delete', @category, method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' } %>
       </div>
       </h2>
       <div class="mb-4">
+        <% if @category.description.present? %>
+          <span class='fw-bold'>Description:</span> 
+        <% end %>
         <%= @category.description %>
       </div>
+
+      <hr class='my-4'>
 
       <div class="mb-4">
         <h6>Add task</h6>
@@ -22,24 +34,23 @@
           <% end %>
         </div>
       </div>
-        
       <h4>Tasks</h4>
       <% @category.tasks.each do |task| %>
         <% if task.persisted? %>
-          <div class="card mb-1 shadow-sm task-card">
-            <div class="card-body">
+          <div class="card mb-2 shadow-sm task-card">
+            <div class="card-body py-2">
               <div class="d-flex justify-content-between align-items-center">
                 <span class="badge mt-2 bg-<%= task.badge_color %> mb-2 text-center"><%= task.status %></span>
                 <div class='my-2'>
-                  <%= link_to 'Edit', edit_category_task_path(task.category, task), class: 'btn btn-light btn-sm' %>
-                  <%= link_to 'Delete', [task.category, task], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-secondary btn-sm' %>
+                  <%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_category_task_path(task.category, task), class: 'btn btn-secondary btn-sm' %>
+                  <%= link_to '<i class="bi bi-trash"></i>'.html_safe, [task.category, task], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
                 </div>
               </div>
               
               <h5 class="card-title mb-3">
-              <%= task.item %>  
+                <%= task.item %>  
               </h5>
-              <p class="mb-0 text-secondary"><%= task.description %></p>
+              <p class="mb-2 text-secondary"><%= task.description %></p>
             </div>
           </div>
         <% end %>
@@ -47,6 +58,6 @@
     </div>
   </div>
   <div class="text-center mt-2 mb-5">
-    <%= link_to 'Back to Categories', categories_path %>
+    <%= link_to 'Back to Journals', categories_path %>
 </div>
 </div>
