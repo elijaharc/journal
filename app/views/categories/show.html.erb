@@ -1,7 +1,7 @@
-<div class="card shadow-sm rounded mt-5">
+<div class="card shadow-sm rounded mt-lg-5">
   <div class="card-body">
     <nav aria-label="breadcrumb">
-      <ol class="breadcrumb fw-light">
+      <ol class="breadcrumb fw-light mb-4">
         <li class="breadcrumb-item"><%= link_to 'Home', home_path, class: "text-decoration-none" %></li>
         <li class="breadcrumb-item"><%= link_to 'Journals', categories_path, class: "text-decoration-none" %></li>
         <li class="breadcrumb-item active" aria-current="tasks"><%= @category.category_name %></li>
@@ -24,16 +24,26 @@
       <hr class='my-4'>
 
       <div class="mb-4">
-        <h6>Add task</h6>
+        <h6>Add a task</h6>
         <%= form_for([@task.category, @task]) do |form| %>
         <%= render 'shared/errors', obj: @task%>
         <%= form.hidden_field :status, value: 'not-started'%>
         <div class="input-group">
           <%= form.text_field :item, class: 'form-control', placeholder: 'Enter task name' %>
+          <%# <%= form.submit class: 'btn btn-primary btn'%>
+        </div>
+      </div>
+      <div class="mb-4">
+        <h6>Task description</h6>
+        <div class="input-group">
+          <%= form.text_field :description, class: 'form-control', placeholder: 'Task description (optional)' %>
           <%= form.submit class: 'btn btn-primary btn'%>
           <% end %>
         </div>
       </div>
+
+    <hr class='my-4'>
+
       <h4>Tasks</h4>
       <% @category.tasks.each do |task| %>
         <% if task.persisted? %>
@@ -61,3 +71,6 @@
     <%= link_to 'Back to Journals', categories_path %>
 </div>
 </div>
+
+<%# add sort by feature %>
+<%# add time feature (created at) %>
