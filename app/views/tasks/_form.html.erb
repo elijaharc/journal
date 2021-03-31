@@ -3,19 +3,19 @@
 
   <div class="form-group mb-3">
     <%= form.label :item %>
-    <%= form.text_field :item, class: 'form-control' %>
+    <%= form.text_field :item, class: 'form-control shadow-sm' %>
   </div>
 
   <div class="form-group mb-3">
     <%= form.label :description %>
-    <%= form.text_field :description, class: 'form-control' %>
+    <%= form.text_field :description, class: 'form-control shadow-sm' %>
   </div>
   <div class="form-group mb-3">
     <%= form.label :status %> <br>
-    <%= form.select :status, Task::STATUS_OPTIONS, {}, class: 'form-control form-select mb-4' %>
+    <%= form.select :status, Task::STATUS_OPTIONS, {}, class: 'form-control form-select mb-4 shadow-sm' %>
   </div>
 
   <div class="actions d-flex justify-content-center">
-    <%= form.submit class: 'btn btn-primary' %>
+    <%= form.submit class: 'btn btn-primary shadow rounded' %>
   </div>
 <% end %>
