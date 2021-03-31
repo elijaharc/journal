@@ -27,9 +27,10 @@ class Category < ApplicationRecord
     end
     
     def percent_complete
-        return 0 if tasks.none?
-
         complete_tasks = tasks.select { |task| task.complete? }.count
+        if complete_tasks == 0
+            return 0
+        end
         ((complete_tasks.to_f / tasks.count) * 100).round
     end
 

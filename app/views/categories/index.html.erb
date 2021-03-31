@@ -29,14 +29,16 @@
                     </div>
                     </h5>
 
-                    <p class='mb-2 mt-0 text-secondary'><%= category.description %></p>  
+                    <p class='mb-2 mt-0 text-secondary'><%= truncate(category.description, length: 50) %></p>  
+                    <%# <label for="birthdaytime">Birthday (date and time):</label>
+                    <input type="date" id="birthdaytime" name="birthdaytime"> %>
                 </div>
             </div>
         <% end %>
     </div>
 </div>
 
-<div class="text-center mt-2 mb-5">
+<div class="text-center mt-2 mb-4">
     <%= link_to 'Back to Home', home_path %>
 </div>
 
