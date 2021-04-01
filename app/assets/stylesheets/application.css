@@ -32,6 +32,10 @@ body {
   text-decoration: none;
 }
 
+.card {
+  background-color: rgb(255, 251, 251);
+}
+
 .category-card {
   transition: background-color 0.5s ease;
 }
@@ -48,6 +52,7 @@ body {
   background-color: #f7f7f7;
 }
 
-#login {
-  background-color: rgb(255, 251, 251) !important;
+#supIcon {
+  font-size: 1rem;
+  margin-left: 0.3rem;
 }

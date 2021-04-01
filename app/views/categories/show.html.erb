@@ -1,4 +1,4 @@
-<div class="card shadow-sm rounded mt-lg-5">
+<div class="card shadow rounded mt-md-5 mt-4">
   <div class="card-body">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb fw-light mb-4">
@@ -8,14 +8,11 @@
       </ol>
     </nav>
       <h2 class="card-title d-flex justify-content-between mb-3 align-items-center">
-      <span class='display-5 fw-normal'><%= @category.category_name %></span>
-
-      <div class='d-flex align-items-center'>
-        <%= link_to 'Edit', edit_category_path(@category), class: 'btn btn-secondary btn-sm mx-1' %>
-        <%= link_to 'Delete', @category, method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' } %>
-      </div>
+      <span class='display-5 fw-normal'><%= @category.category_name %>
+      <sup><small><%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_category_path(@category), class: 'text-muted', id: 'supIcon'%></small></sup><sup><small><%= link_to '<i class="bi bi-trash"></i>'.html_safe, @category, method: :delete, class: 'text-danger', id: 'supIcon', data: { confirm: 'Are you sure?' } %></small></sup></span>
+      
       </h2>
-        <div class="progress mb-5">
+        <div class="progress mb-4">
           <div class="progress-bar bg-secondary" role="progressbar" style="width: <%= @category.percent_complete %>%;" aria-valuenow="<%= @category.percent_complete %>" aria-valuemin="0" aria-valuemax="100"><%= @category.total_complete %> / <%= @category.total_tasks %>
           </div>
         </div>
@@ -52,6 +49,7 @@
                 </h5>
                 <div>
                   <span><%= link_to '<i class="bi bi-calendar-check"></i>'.html_safe, edit_category_task_path(task.category, task), class: 'text-decoration-none text-dark' %></span>
+                  <span><%= (task.deadline).to_s %></span>
                 </div>
               </div>
               
@@ -63,8 +61,8 @@
       <% end %>
     </div>
   </div>
-  <div class="text-center mt-2 mb-4">
-    <%= link_to 'Back to Journals', categories_path %>
+  <div class="text-center mt-3 mb-5">
+    <%= link_to 'Back to Journals', categories_path, class: 'fw-light text-decoration-none' %>
   </div>
 </div>
 
