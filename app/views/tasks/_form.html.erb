@@ -1,15 +1,17 @@
 <%= form_for([@task.category, @task]) do |form| %>
+
   <%= render 'shared/errors', obj: @task%>
 
   <div class="form-group mb-3">
     <%= form.label :item, class: 'mb-1' %>
-    <%= form.text_field :item, class: 'form-control shadow-sm', placeholder: 'Name of task' %>
+    <%= form.text_field :item, class: 'form-control shadow-sm', placeholder: 'Name of task', autofocus: true %>
   </div>
 
   <div class="form-group mb-3">
     <%= form.label :description, class: 'mb-1' %>
     <%= form.text_field :description, class: 'form-control shadow-sm', placeholder: 'Optional' %>
   </div>
+
   <div class="form-group mb-3">
     <%= form.label :status, class: 'mb-1' %> <br>
     <%= form.select :status, Task::STATUS_OPTIONS, {}, class: 'form-control form-select mb-4 shadow-sm' %>
@@ -20,8 +22,8 @@
     <%= form.text_field :deadline, class: 'form-control shadow-sm', placeholder: 'Optional', type: 'date' %>
   </div>
 
-
   <div class="actions d-flex justify-content-center mt-3">
     <%= form.submit class: 'btn btn-primary shadow rounded' %>
   </div>
+
 <% end %>

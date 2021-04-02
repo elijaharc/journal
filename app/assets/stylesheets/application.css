@@ -56,3 +56,24 @@ body {
   font-size: 1rem;
   margin-left: 0.3rem;
 }
+
+#addDeadline:hover {
+  color: rgb(69, 69, 219) !important;
+}
+
+/* #calendarIcon {
+  margin-right: 0.4rem;
+} */
+
+#footer {
+  font-size: 10px;
+  color: rgb(209, 209, 209);
+}
+
+nav {
+  font-size: 1.05rem;
+}
+
+.nav-item a:hover {
+  color: rgb(248, 156, 156) !important;
+}
