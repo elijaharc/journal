@@ -49,7 +49,7 @@ class TasksController < ApplicationController
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
     @task.destroy
-    redirect_to @category
+    redirect_back(fallback_location: root_path) 
   end
 
   private
