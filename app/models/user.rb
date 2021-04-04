@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :tasks, through: :categories
   validates :username, presence: true
   validates :username, uniqueness: true, if: -> { self.username.present? } 
+  validates_confirmation_of :password
   ORDER_CATEGORY_OPTIONS = [
     ['Alphabetical (Ascending)', 'category_name asc'], ['Alphabetical (Descending)', 'category_name desc'],
     ['First Created', 'created_at asc'], ['Last Created', 'created_at desc'], ['Last Edited', 'updated_at desc']
