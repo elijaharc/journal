@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories or /categories.json
   def index
-    @categories = current_user.categories
+    @categories = current_user.categories.paginate(page: params[:page], per_page: 5)
   end
 
   # GET /categories/1 or /categories/1.json
@@ -19,6 +19,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1/edit
   def edit
+    session[:return_to] ||= request.referer
   end
 
   # POST /categories or /categories.json
@@ -28,7 +29,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category, notice: "Category was successfully created." }
+        format.html { redirect_to category_tasks_path(@category), notice: "Journal was successfully created." }
         format.json { render :show, status: :created, location: @category }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,14 +40,10 @@ class CategoriesController < ApplicationController
 
   # PATCH/PUT /categories/1 or /categories/1.json
   def update
-    respond_to do |format|
-      if @category.update(category_params)
-        format.html { redirect_to @category, notice: "Category was successfully updated." }
-        format.json { render :show, status: :ok, location: @category }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
-      end
+    if @category.update(category_params)
+      redirect_to category_tasks_path(@category)
+    else
+      render action: 'edit'
     end
   end
 
@@ -54,7 +51,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
     respond_to do |format|
-      format.html { redirect_to categories_url, notice: "Category was successfully destroyed." }
+      format.html { redirect_to categories_url, alert: "Journal was successfully deleted." }
       format.json { head :no_content }
     end
   end
@@ -67,6 +64,6 @@ class CategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def category_params
-      params.require(:category).permit(:category_name, :description)
+      params.require(:category).permit(:category_name, :description, :order_by)
     end
 end
