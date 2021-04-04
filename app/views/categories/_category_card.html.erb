@@ -1,0 +1,66 @@
+    <div class="card-body">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb fw-light">
+                <li class="breadcrumb-item"><%= link_to 'Home', home_path, class: "text-decoration-none" %></li>
+                <li class="breadcrumb-item active" aria-current="journals">Journals</li>
+            </ol>
+        </nav>
+
+        <h1 class="card-title d-flex justify-content-between align-items-center mb-2 display-4 fw-normal">Journals
+            <p class='mb-2'><%= link_to '+ New Journal', new_category_path, { class: 'btn btn-success btn-md py-1 px-2 shadow-sm rounded',  'data-bs-toggle'=> 'tooltip', 'data-bs-placement'=> 'bottom', 'title' => 'Create new journal' } %></p>
+        </h1>
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <div class="text-center fw-light mb-md-4 mb-2 mt-md-2 mt-1 order-1 order-md-0">
+                <%= page_entries_info @categories, :entry_name => 'journal' %>
+            </div>
+            <div class='order-0 order-md-1 mt-3 mt-md-0'>
+            <% if @current_user.categories.count > 1 %>
+                <%= form_for(@current_user) do |form| %>
+                    <div class="col-12">
+                        <div class="form-group mb-3 input-group input-group-sm">
+                            <%= form.select :order_categories_by, User::ORDER_CATEGORY_OPTIONS, {}, class: 'form-control form-select shadow-sm rounded-start' %>
+                            <%= form.submit 'Sort', class: 'btn btn-primary btn-sm shadow-sm', id: 'button-addon2' %>
+                        </div>
+                    </div>
+                <% end %>
+            <% end %>
+            </div>
+        </div>
+
+        <% @categories.each_with_index do |category, index| %>
+            <% if index > 3 %>
+                <%= will_paginate @categories, list_classes: %w(pagination justify-content-center mt-2 px-0 btn-sm) %>
+            <% end %>
+        <% end %>
+        
+        <% @current_user.categories.order(@current_user.order_categories_by).paginate(page: params[:page], per_page: 5).each do |category| %>
+            <div class="card mb-4 category-card shadow-sm rounded">
+                <div class="card-body">
+
+                    <div class='d-flex justify-content-between'>
+                    
+                        <div class="progress w-25">
+                            <div class="progress-bar bg-secondary" role="progressbar" style="width: <%= category.percent_complete %>%;" aria-valuenow="<%= category.percent_complete %>" aria-valuemin="0" aria-valuemax="100"><%= category.total_complete %> / <%= category.total_tasks %>
+                            </div>
+                        </div>
+                        <small>
+                            <%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_category_path(category), { class: 'btn btn-secondary btn-sm', 'data-bs-toggle' => 'tooltip', 'data-bs-placement' => 'bottom', 'title' => 'Edit journal' } %>
+                            <%= link_to '<i class="bi bi-trash"></i>'.html_safe, category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm', 'data-bs-toggle' => 'tooltip', 'data-bs-placement' => 'bottom', 'title' => 'Delete journal' %>
+                        </small>
+                    </div>
+                    
+                    <div class="card-title d-flex justify-content-between align-items-start mb-0 mt-1">
+                        <div class="d-flex align-items-start flex-column justify-content-start">
+                            <span class="badge bg-<%= category.badge_color %> text-center mb-2"><%= category.status %> </span>
+                            <p><%= link_to category.category_name, category_tasks_path(category), { class: 'text-decoration-none display-6 fw-normal', 'data-bs-toggle'=> 'tooltip', 'data-bs-placement'=> 'bottom', 'title' => 'View journal tasks' } %></p>
+                        </div>
+                        <small class='mt-1 text-muted'>Created: <%= category.created_at.strftime("%B %d, %Y") %></small>
+                    </div>
+                    <p class='mb-2 mt-0 text-secondary'><%= truncate(category.description, length: 80) %></p>
+                </div>
+            </div>
+        <% end %>
+
+        <%= will_paginate @categories, list_classes: %w(pagination justify-content-center) %>
+    </div>
+</div>

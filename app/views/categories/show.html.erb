@@ -1,4 +1,4 @@
-<div class="card shadow rounded mt-md-5 mt-4">
+<div class="card shadow rounded mt-md-5 mt-3">
   <div class="card-body">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb fw-light mb-4">
@@ -8,19 +8,20 @@
       </ol>
     </nav>
       <h2 class="card-title d-flex justify-content-between mb-3 align-items-center">
-      <span class='display-5 fw-normal'><%= @category.category_name %>
+      <span class='display-5 fw-normal'><%= @category.category_help_name %>
       <sup><small data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit journal"><%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_category_path(@category), class: 'text-muted', id: 'supIcon'%></small></sup><sup><small data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete journal"><%= link_to '<i class="bi bi-trash"></i>'.html_safe, @category, method: :delete, class: 'text-danger', id: 'supIcon', data: { confirm: 'Are you sure?' } %></small></sup></span>
-      
       </h2>
-        <div class="progress mb-4">
-          <div class="progress-bar bg-secondary" role="progressbar" style="width: <%= @category.percent_complete %>%;" aria-valuenow="<%= @category.percent_complete %>" aria-valuemin="0" aria-valuemax="100"><%= @category.total_complete %> / <%= @category.total_tasks %>
-          </div>
+
+      <div class="progress mb-4">
+        <div class="progress-bar bg-secondary" role="progressbar" style="width: <%= @category.percent_complete %>%;" aria-valuenow="<%= @category.percent_complete %>" aria-valuemin="0" aria-valuemax="100"><%= @category.total_complete %> / <%= @category.total_tasks %>
         </div>
-        <div class="mb-4">
+      </div>
+
+      <div class="mb-4">
         <% if @category.description.present? %>
           <span class='fw-bold'>Description:</span> 
+          <%= truncate(@category.description, length: 180) %>
         <% end %>
-        <%= @category.description %>
       </div>
 
       <hr class='my-4'>
@@ -30,8 +31,11 @@
           <%= link_to '+ New Task', new_category_task_path(@category), { class: 'btn btn-success text-center', 'data-bs-toggle'=> 'tooltip', 'data-bs-placement'=> 'bottom', 'title' => 'Create new task' } %>
         </span>
       </div>
-
-      <% @category.tasks.each do |task| %>
+              <p>Sort by: 
+                <%= link_to "item", category_path(order: 'item') %>,
+                <%= link_to "created_at", category_path(order: 'created_at') %>
+              </p>
+      <% @category.tasks.reverse_each do |task| %>
         <% if task.persisted? %>
           <div class="card mb-2 shadow-sm task-card">
             <div class="card-body py-2">
@@ -42,7 +46,7 @@
                   <%= link_to '<i class="bi bi-trash"></i>'.html_safe, [task.category, task], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm', 'data-bs-toggle'=> 'tooltip', 'data-bs-placement'=> 'bottom', 'title' => 'Delete task' %>
                 </div>
               </div>
-
+              
               <div class='d-flex justify-content-between col-12'>
                 <h5 class="card-title mb-3">
                   <%= task.item %>  
@@ -71,6 +75,3 @@
     <%= link_to 'Back to Journals', categories_path, class: 'fw-light text-decoration-none' %>
   </div>
 </div>
-
-<%# add sort by feature %>
-<%# add time feature (created at) %>

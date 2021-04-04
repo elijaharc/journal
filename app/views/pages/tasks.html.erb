@@ -1,12 +1,22 @@
 <% if @tasks.count > 0 %>
-  <h1 class="text-center mt-4 display-5 fw-normal mb-4">Showing all your tasks</h1>
+  <div class="card mt-md-5 mt-3 shadow rounded">
+    <div class="card-body">
+        <h1 class="text-center mt-4 display-5 fw-normal mb-4 mb-md-5">Showing all your tasks</h1>
 
-  <nav aria-label="breadcrumb">
-      <ol class="breadcrumb fw-light">
-          <li class="breadcrumb-item"><%= link_to 'Home', home_path, class: "text-decoration-none" %></li>
-          <li class="breadcrumb-item active" aria-current="journals">All tasks</li>
-      </ol>   
-  </nav>
+        <div class='d-flex justify-content-between align-items-center flex-column flex-md-row'>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb fw-light">
+                <li class="breadcrumb-item"><%= link_to 'Home', home_path, class: "text-decoration-none" %></li>
+                <li class="breadcrumb-item active" aria-current="journals">Today's Tasks</li>
+            </ol>   
+        </nav>
+          <div class='d-flex justify-content-end'>
+            <form class="input-group input-group-sm h-25 w-100 mb-3" action='/search'>
+              <input type="text" class="form-control" name='q' placeholder="Search for a task" aria-label="Search" aria-describedby="button-addon2">
+              <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
+            </form>
+          </div>
+        </div>
 
   <% @tasks.each do |task| %>
     <% if task.persisted? %>
@@ -22,7 +32,7 @@
 
           <div class='d-flex justify-content-between align-items-center col-12'>
             <h5 class="card-title m-0">
-              <%= task.item %>  
+              <%= link_to task.item, category_tasks_path(task.category_id), class: 'text-decoration-none' %>  
             </h5>
             <div class='d-flex flex-column flex-md-row justify-content-start align-items-end col-5 col-md-6 justify-content-md-end align-items-md-start'>
               <small class='d-flex justify-content-end me-md-1'><%= link_to '<i class="bi bi-calendar-check"></i>'.html_safe, edit_category_task_path(task.category, task), class: 'text-decoration-none text-dark', id: 'calendarIcon' %></small>
@@ -35,14 +45,16 @@
               </small>
             </div>
           </div>
-          <small class='text-dark'><b>Category: </b><%= link_to task.category.category_name, category_path(task.category.id), class: 'text-dark text-decoration-none', id: 'addDeadline' %></small>
+          <small class='text-dark'><b>Category: </b><%= link_to task.category.category_name, categories_path(task.category), class: 'text-dark text-decoration-none', id: 'addDeadline' %></small>
           <p class="mb-2 mt-2 text-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Task description"><%= truncate(task.description, length: 50) %></p>
-          
         </div>
       </div>
     <% end %>
   <% end %>
 
+
+    </div>
+  </div>
   <div class="text-center mt-3 mb-4">
       <%= link_to 'Back to Home', home_path, class: 'fw-light text-decoration-none' %>
   </div>

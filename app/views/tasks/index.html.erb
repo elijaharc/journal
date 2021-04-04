@@ -1,15 +1,21 @@
-<h1 class="text-center mt-4">Showing all your tasks</h1>
-
-<div class="text-center fw-light">
-  <%= page_entries_info @tasks %>
-</div>
-
-<% @tasks.each_with_index do |task, index| %>
-    <% if index > 1 %>
-        <%= will_paginate @tasks, list_classes: %w(pagination justify-content-center mt-2 btn-sm) %>
-    <% end %>
+<% if notice.present? %>
+    <div class="alert alert-success text-center mt-3 mb-0" role="alert">
+        <%= notice %>
+    </div>
+    <div class="card shadow rounded mt-3">
+    <%= render 'task_card' %>
+<% elsif alert.present? %>
+    <div class="alert alert-danger text-center mt-3 mb-0" role="alert">
+        <%= alert %>
+    </div>
+    <div class="card shadow rounded mt-3">
+    <%= render 'task_card' %>
+<% else %>
+    <div class="card shadow rounded mt-md-5 mt-3">
+    <%= render 'task_card' %>
 <% end %>
-
-<%= render 'task' %>
-
-<%= will_paginate @tasks, list_classes: %w(pagination justify-content-center) %>
+  
+  <div class="text-center mt-3 mb-5">
+    <%= link_to 'Back to Journals', categories_path, class: 'fw-light text-decoration-none' %>
+  </div>
+</div>
