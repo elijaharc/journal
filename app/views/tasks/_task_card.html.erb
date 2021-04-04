@@ -30,6 +30,9 @@
           <%= link_to '+ New Task', new_category_task_path(@category), { class: 'btn btn-success text-center shadow-sm', 'data-bs-toggle'=> 'tooltip', 'data-bs-placement'=> 'bottom', 'title' => 'Create new task' } %>
         </span>
       </div>
+      <% if @tasks.count < 1 %>
+        <small class='text-muted'>No entries found. Create a task to display them here!</small>
+      <% end %>
 
       <% if @tasks.count > 1 %>
         <%= form_with(model: @category) do |form| %>
