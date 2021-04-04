@@ -13,6 +13,8 @@ class PagesController < ApplicationController
     def tasks
         @tasks = current_user.tasks.order('deadline asc')
     end
-end
 
-# .paginate(page: params[:page], per_page: 3).order('created_at desc')
+    def search
+        @tasks = Task.where('item LIKE ?', '%' + params[:q] + '%').order('deadline asc')
+    end
+end
