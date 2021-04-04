@@ -4,13 +4,13 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb fw-light">
             <li class="breadcrumb-item"><%= link_to 'Home', home_path, class: "text-decoration-none" %></li>
-            <li class="breadcrumb-item"><%= link_to 'All Tasks', tasks_path, class: "text-decoration-none" %></li>
+            <li class="breadcrumb-item"><%= link_to 'All Entries', tasks_path, class: "text-decoration-none" %></li>
             <li class="breadcrumb-item active" aria-current="journals">Search</li>
         </ol>   
     </nav>
     <div class='d-flex justify-content-end'>
         <form class="input-group input-group-sm h-25 w-100 mb-3" action='/search'>
-            <input type="text" class="form-control" name='q' placeholder="Search for a task" aria-label="Search" aria-describedby="button-addon2">
+            <input type="text" class="form-control" name='q' placeholder="Search for an entry" aria-label="Search" aria-describedby="button-addon2">
             <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
         </form>
     </div>

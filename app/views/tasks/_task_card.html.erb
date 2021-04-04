@@ -25,13 +25,13 @@
 
       <hr class='my-4'>
       <div class='d-flex justify-content-between align-items-center mb-3'>
-        <h4 class='display-6 fw-normal m-0'>Tasks</h4>
+        <h4 class='display-6 fw-normal m-0'>Entries</h4>
         <span>
           <%= link_to '+ New Task', new_category_task_path(@category), { class: 'btn btn-success text-center shadow-sm', 'data-bs-toggle'=> 'tooltip', 'data-bs-placement'=> 'bottom', 'title' => 'Create new task' } %>
         </span>
       </div>
       <% if @tasks.count < 1 %>
-        <small class='text-muted'>No entries found. Create a task to display them here!</small>
+        <small class='text-muted'>No entries found. Create one to display it here!</small>
       <% end %>
 
       <% if @tasks.count > 1 %>
@@ -70,7 +70,7 @@
                   <% if task.deadline.present? %>
                     <%= link_to task.deadline.strftime("%B %d, %Y"), edit_category_task_path(task.category, task), class: 'text-decoration-none text-dark', id: 'addDeadline' %>
                   <% else %>
-                    <%= link_to 'Add task deadline', edit_category_task_path(task.category, task), class: 'text-decoration-none text-dark', id: 'addDeadline' %>
+                    <%= link_to 'Add deadline', edit_category_task_path(task.category, task), class: 'text-decoration-none text-dark', id: 'addDeadline' %>
                   <% end %>
                   </small>
                 </div>
