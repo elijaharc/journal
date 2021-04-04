@@ -65,10 +65,12 @@ body {
   margin-right: 0.4rem;
 } */
 
-#footer {
+/* #footer {
   font-size: 10px;
   color: rgb(209, 209, 209);
-}
+  position: absolute;
+  bottom: 0;
+} */
 
 nav {
   font-size: 1.05rem;
@@ -76,4 +78,12 @@ nav {
 
 .nav-item a:hover {
   color: rgb(248, 156, 156) !important;
+}
+
+.notice {
+  color: rgb(32, 32, 32);
+}
+
+#alert {
+  color: rgb(206, 83, 83);
 }
