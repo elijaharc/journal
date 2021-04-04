@@ -7,8 +7,8 @@ class PagesController < ApplicationController
     def about
     end
 
-    def profile
-    end
+    # def profile
+    # end
 
     def tasks
         @tasks = current_user.tasks.order('deadline asc')

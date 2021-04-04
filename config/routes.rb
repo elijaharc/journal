@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   root 'pages#home'
   get '/home' => 'pages#home'
   # get '/about' => 'pages#about'
-  get '/profile' => 'pages#profile'
+  # get '/profile' => 'pages#profile'
   get '/tasks' => 'pages#tasks'
   get '/search' => 'pages#search'
 end
