@@ -3,11 +3,9 @@ class TasksController < ApplicationController
   before_action :set_category
   before_action :set_task, only: %i[ show edit update destroy ]
   
-
-
   # GET /tasks or /tasks.json
   def index
-    @tasks = @category.tasks.paginate(page: params[:page], per_page: 3).order('created_at desc')
+    @tasks = @category.tasks
     # @user = current_user
     # @tasks = current_user.tasks.order('created_at desc')
     # @tasks = current_user.tasks.paginate(page: params[:page], per_page: 3).order('created_at desc')
@@ -24,6 +22,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+    session[:return_to] ||= request.referer
   end
 
   # POST /tasks or /tasks.json
@@ -31,7 +30,7 @@ class TasksController < ApplicationController
     @task = @category.tasks.build(task_params)
 
     if @task.save
-        redirect_to(@task.category)   
+        redirect_to category_tasks_path  
     else
        render action: 'new'
     end
@@ -40,7 +39,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
     if @task.update(task_params)
-        redirect_to(@task.category)   
+      redirect_to session.delete(:return_to)
     else
        render action: 'edit'
     end
