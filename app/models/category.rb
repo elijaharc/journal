@@ -2,6 +2,10 @@ class Category < ApplicationRecord
     belongs_to :user
     has_many :tasks, :dependent => :destroy
     validates :category_name, presence: true
+    ORDER_OPTIONS = [
+        ['Alphabetical (Ascending)', 'item asc'], ['Alphabetical (Descending)', 'item desc'],
+        ['First Created', 'created_at asc'], ['Last Created', 'created_at desc'],['Deadline (First)', 'deadline asc'], ['Deadline (Last)', 'deadline desc']
+    ]
 
     def badge_color
         case status
