@@ -1,0 +1,84 @@
+<div class="card-body">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb fw-light mb-4">
+        <li class="breadcrumb-item" ><%= link_to 'Home', home_path, class: "text-decoration-none" %></li>
+        <li class="breadcrumb-item"><%= link_to 'Journals', categories_path, class: "text-decoration-none" %></li>
+        <li class="breadcrumb-item active" aria-current="tasks"><%= @category.category_name %></li>
+      </ol>
+    </nav>
+      <h2 class="card-title d-flex justify-content-between mb-3 align-items-center">
+      <span class='display-5 fw-normal'><%= @category.category_name %>
+      <sup><small data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit journal"><%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_category_path(@category), class: 'text-muted', id: 'supIcon'%></small></sup><sup><small data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete journal"><%= link_to '<i class="bi bi-trash"></i>'.html_safe, @category, method: :delete, class: 'text-danger', id: 'supIcon', data: { confirm: 'Are you sure?' } %></small></sup></span>
+      </h2>
+
+      <div class="progress mb-4">
+        <div class="progress-bar bg-secondary" role="progressbar" style="width: <%= @category.percent_complete %>%;" aria-valuenow="<%= @category.percent_complete %>" aria-valuemin="0" aria-valuemax="100"><%= @category.total_complete %> / <%= @category.total_tasks %>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <% if @category.description.present? %>
+          <span class='fw-bold'>Description:</span> 
+          <%= truncate(@category.description, length: 180) %>
+        <% end %>
+      </div>
+
+      <hr class='my-4'>
+      <div class='d-flex justify-content-between align-items-center mb-3'>
+        <h4 class='display-6 fw-normal m-0'>Tasks</h4>
+        <span>
+          <%= link_to '+ New Task', new_category_task_path(@category), { class: 'btn btn-success text-center shadow-sm', 'data-bs-toggle'=> 'tooltip', 'data-bs-placement'=> 'bottom', 'title' => 'Create new task' } %>
+        </span>
+      </div>
+
+      <% if @tasks.count > 1 %>
+        <%= form_with(model: @category) do |form| %>
+        <div class="d-flex justify-content-end">
+          <div class="col-md-6 col-12 mb-2">
+            <div class="form-group mb-3 input-group input-group-sm">
+              <%= form.select :order_by, Category::ORDER_OPTIONS, {}, class: 'form-control form-select shadow-sm rounded-start' %>
+              <%= form.submit 'Sort', class: 'btn btn-primary btn-sm shadow-sm', id: 'button-addon2' %>
+            </div>
+          </div>
+        </div>
+        
+        <% end %>
+      <% end %>
+
+      <% @category.tasks.order(@category.order_by).each do |task| %>
+        <% if task.persisted? %>
+          <div class="card mb-2 shadow-sm task-card">
+            <div class="card-body py-2">
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="badge mt-2 bg-<%= task.badge_color %> mb-2 text-center"><%= link_to task.status, edit_category_task_path(task.category, task), class: 'text-white text-decoration-none' %></span>
+                <div class='my-2'>
+                  <%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_category_task_path(task.category, task), { class: 'btn btn-secondary btn-sm', 'data-bs-toggle'=> 'tooltip', 'data-bs-placement'=> 'bottom', 'title' => 'Edit task' } %>
+                  <%= link_to '<i class="bi bi-trash"></i>'.html_safe, [task.category, task], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm', 'data-bs-toggle'=> 'tooltip', 'data-bs-placement'=> 'bottom', 'title' => 'Delete task' %>
+                </div>
+              </div>
+              
+              <div class='d-flex justify-content-between col-12'>
+                <h5 class="card-title mb-3">
+                  <%= task.item %>  
+                </h5>
+                <div class='d-flex flex-column flex-md-row justify-content-start align-items-end mt-1 col-5 col-md-6 justify-content-md-end align-items-md-start'>
+                  <small class='d-flex justify-content-end me-md-1'><%= link_to '<i class="bi bi-calendar-check"></i>'.html_safe, edit_category_task_path(task.category, task), class: 'text-decoration-none text-dark', id: 'calendarIcon' %></small>
+                  <small data-bs-toggle="tooltip" data-bs-placement="bottom" title="Task deadline">
+                  <% if task.deadline.present? %>
+                    <%= link_to task.deadline.strftime("%B %d, %Y"), edit_category_task_path(task.category, task), class: 'text-decoration-none text-dark', id: 'addDeadline' %>
+                  <% else %>
+                    <%= link_to 'Add task deadline', edit_category_task_path(task.category, task), class: 'text-decoration-none text-dark', id: 'addDeadline' %>
+                  <% end %>
+                  </small>
+                </div>
+              </div>
+              
+              <p class="mb-2 text-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Task description"><%= truncate(task.description, length: 50) %></p>
+
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+    </div>
+  </div>
