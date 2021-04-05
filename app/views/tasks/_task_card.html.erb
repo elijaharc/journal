@@ -27,7 +27,7 @@
       <div class='d-flex justify-content-between align-items-center mb-3'>
         <h4 class='display-6 fw-normal m-0'>Entries</h4>
         <span>
-          <%= link_to '+ New Task', new_category_task_path(@category), { class: 'btn btn-success text-center shadow-sm', 'data-bs-toggle'=> 'tooltip', 'data-bs-placement'=> 'bottom', 'title' => 'Create new task' } %>
+          <%= link_to '+ New Entry', new_category_task_path(@category), { class: 'btn btn-success text-center shadow-sm', 'data-bs-toggle'=> 'tooltip', 'data-bs-placement'=> 'bottom', 'title' => 'Create new task' } %>
         </span>
       </div>
       <% if @tasks.count < 1 %>
