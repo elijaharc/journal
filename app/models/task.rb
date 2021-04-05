@@ -1,10 +1,10 @@
 class Task < ApplicationRecord
     validates :item, presence: true
-    validates :status, inclusion: { in: ['not-started', 'in-progress', 'complete']}
+    validates :status, inclusion: { in: ['not-started', 'in-progress', 'completed']}
     belongs_to :category
     STATUS_OPTIONS = [
         ['Not started', 'not-started'],
-        ['In progress', 'in-progress'], ['Complete', 'complete']
+        ['In progress', 'in-progress'], ['Completed', 'completed']
     ]
 
     def badge_color
@@ -13,13 +13,13 @@ class Task < ApplicationRecord
             'danger'
         when 'in-progress'
             'warning'
-        else 'complete'
+        else 'completed'
             'success'
         end
     end
 
     def complete?
-        status == 'complete'
+        status == 'completed'
     end
 
     def in_progress?

@@ -13,7 +13,7 @@ class Category < ApplicationRecord
             'danger'
         when 'in-progress'
             'warning'
-        else 'complete'
+        else 'completed'
             'success'
         end
     end
@@ -22,7 +22,7 @@ class Category < ApplicationRecord
         return 'not-started' if tasks.none?
 
         if tasks.all? { |task| task.complete? }
-           return 'complete'
+           return 'completed'
         elsif tasks.any? { |task| task.in_progress? || task.complete? }
             return 'in-progress'
         else
