@@ -19,7 +19,8 @@
 
   <div class="form-group mb-3">
     <%= form.label :deadline, 'Deadline (Optional)', class: 'mb-1' %>
-    <%= form.text_field :deadline, class: 'form-control shadow-sm', placeholder: 'Optional', type: 'date' %>
+    <%= form.date_field :deadline, class: 'form-control shadow-sm', placeholder: 'Optional', type: 'date' %>
+    <%# fixed it by changing it to form.date_field instead of form.text_field %>
   </div>
 
   <div class="actions d-flex justify-content-center mt-3">
