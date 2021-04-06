@@ -9,22 +9,22 @@
 
           <div class="field">
             <%= f.label :username, class: 'mt-2 mb-1' %>
-            <%= f.text_field :username, class: 'w-100 mb-2', autofocus: true%>
+            <%= f.text_field :username, class: 'w-100 mb-2 form-control', autofocus: true%>
           </div>
 
           <div class="field">
             <%= f.label :first_name %>
-            <%= f.text_field :first_name, class: 'w-100 mb-2' %>
+            <%= f.text_field :first_name, class: 'w-100 mb-2 form-control' %>
           </div>
 
           <div class="field">
             <%= f.label :last_name %>
-            <%= f.text_field :last_name, class: 'w-100 mb-2' %>
+            <%= f.text_field :last_name, class: 'w-100 mb-2 form-control' %>
           </div>
 
           <div class="field">
             <%= f.label :email %>
-            <%= f.email_field :email, autocomplete: "email", class: 'w-100 mb-2' %>
+            <%= f.email_field :email, autocomplete: "email", class: 'w-100 mb-2 form-control' %>
           </div>
 
           <div class="field">
@@ -32,16 +32,16 @@
             <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> characters minimum)</em>
             <% end %>
-            <%= f.password_field :password, autocomplete: "new-password", class: 'w-100 mb-2' %>
+            <%= f.password_field :password, autocomplete: "new-password", class: 'w-100 mb-2 form-control' %>
           </div>
 
           <div class="field">
             <%= f.label :password_confirmation %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'w-100 mb-2' %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'w-100 mb-2 form-control' %>
           </div>
 
           <div class="actions">
-            <%= f.submit "Sign up", class: 'btn btn-success mb-4 shadow rounded mt-2' %>
+            <%= f.submit "Sign up", class: 'btn btn-success mb-4 shadow rounded mt-2 form-control' %>
           </div>
           <% end %>
           <p class='mb-0'><small>Already have an account?</small></p>
