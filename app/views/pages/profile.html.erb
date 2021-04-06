@@ -10,4 +10,14 @@
     <h1>Your Profile</h1>
     <p><%= current_user.username %></p>
     <p><%= current_user.first_name %></p>
+     <div class="field">
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name, class: 'w-100 mb-2 form-control' %>
+        </div>
+
+            <div class="field">
+              <%= f.label :last_name %>
+              <%= f.text_field :last_name, class: 'w-100 mb-2 form-control' %>
+            </div>
     <span><%= link_to 'Edit profile', edit_user_registration_path %></span>
+    
