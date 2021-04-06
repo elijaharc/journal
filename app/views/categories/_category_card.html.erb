@@ -34,6 +34,7 @@
         <% end %>
         
         <% @current_user.categories.order(@current_user.order_categories_by).paginate(page: params[:page], per_page: 5).each do |category| %>
+            <% if category.persisted? %>
             <div class="card mb-4 category-card shadow-sm rounded">
                 <div class="card-body">
 
@@ -59,6 +60,7 @@
                     <p class='mb-2 mt-0 text-secondary'><%= truncate(category.description, length: 80) %></p>
                 </div>
             </div>
+            <% end %>
         <% end %>
 
         <%= will_paginate @categories, list_classes: %w(pagination justify-content-center) %>
