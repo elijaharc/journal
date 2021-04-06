@@ -5,7 +5,7 @@ class Category < ApplicationRecord
     ORDER_OPTIONS = [
         ['Alphabetical (Ascending)', 'item asc'], ['Alphabetical (Descending)', 'item desc'],
         ['First Created', 'created_at asc'], ['Last Created', 'created_at desc'],['Deadline (First)', 'deadline asc'], ['Deadline (Last)', 'deadline desc']
-    ]
+    ].freeze
 
     def badge_color
         case status

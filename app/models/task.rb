@@ -5,7 +5,7 @@ class Task < ApplicationRecord
     STATUS_OPTIONS = [
         ['Not started', 'not-started'],
         ['In progress', 'in-progress'], ['Completed', 'completed']
-    ]
+    ].freeze
 
     def badge_color
         case status
