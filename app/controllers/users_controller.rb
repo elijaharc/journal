@@ -19,11 +19,11 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /categories/1 or /categories/1.json
   def update
-      # if @current_user.update(user_params)
-      #   # redirect_to categories_path
-      # else
-      #   render action: 'edit'
-      # end
+      if @current_user.update(user_params)
+        redirect_to categories_path
+      else
+        render action: 'edit'
+      end
   end
 
   private
