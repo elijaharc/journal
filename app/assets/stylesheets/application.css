@@ -92,3 +92,12 @@ nav {
 #alert {
   color: rgb(206, 83, 83);
 }
+
+svg {
+  width: auto;
+  height: 220px;
+}
+
+/* #helloHome {
+  margin: 0 10rem !important;
+} */
