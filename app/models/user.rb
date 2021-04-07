@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_many :categories, :dependent => :destroy
   has_many :tasks, through: :categories
   validates :username, :first_name, :last_name, presence: true
-  validates :username, uniqueness: true, if: -> { self.username.present? } 
+  validates :username, uniqueness: true 
   validates_confirmation_of :password
   ORDER_CATEGORY_OPTIONS = [
     ['Alphabetical (Ascending)', 'category_name asc'], ['Alphabetical (Descending)', 'category_name desc'],
