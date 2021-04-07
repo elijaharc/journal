@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :tasks, through: :categories
   validates :username, :first_name, :last_name, presence: true
   validates :username, uniqueness: true 
+  validates :first_name, length: { maximum: 20 }
   validates_confirmation_of :password
   ORDER_CATEGORY_OPTIONS = [
     ['Alphabetical (Ascending)', 'category_name asc'], ['Alphabetical (Descending)', 'category_name desc'],
