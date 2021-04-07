@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-    it { expect(described_class.new).to validate_presence_of :category_name }
+  it { expect(described_class.new).to validate_presence_of :category_name }
   
     describe "#methods" do
       describe "badge_color" do
@@ -122,15 +122,15 @@ RSpec.describe Category, type: :model do
             expect(category.total_complete).to eq 1
           end
         end
+      end
 
-        describe "total_tasks" do
-          context "all the tasks in the category" do
-            it "should count number of tasks created" do
-              user = User.create(email: "elijah@elijah.com", username: "elijaharc", first_name: "Elijah", last_name: "Arc", password: 'password')
-              category = Category.create(category_name: 'test1', user_id: user.id)
-              task = Task.create(item: 'test1', status: 'not-started', category_id: category.id)
-              expect(category.total_tasks).to eq 1
-            end
+      describe "total_tasks" do
+        context "all the tasks in the category" do
+          it "should count number of tasks created" do
+            user = User.create(email: "elijah@elijah.com", username: "elijaharc", first_name: "Elijah", last_name: "Arc", password: 'password')
+            category = Category.create(category_name: 'test1', user_id: user.id)
+            task = Task.create(item: 'test1', status: 'not-started', category_id: category.id)
+            expect(category.total_tasks).to eq 1
           end
         end
       end
