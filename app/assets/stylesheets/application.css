@@ -93,7 +93,7 @@ nav {
   color: rgb(206, 83, 83);
 }
 
-svg {
+.fixedSVG svg {
   width: auto;
   height: 220px;
 }
