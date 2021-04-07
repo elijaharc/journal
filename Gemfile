@@ -56,7 +56,7 @@ group :test do
   gem 'webdrivers'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
-
+  gem 'rexml'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
