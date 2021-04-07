@@ -20,13 +20,17 @@ class Category < ApplicationRecord
 
     def status
         return 'not-started' if tasks.none?
+        #danger
 
         if tasks.all? { |task| task.complete? }
            return 'completed'
+           #success
         elsif tasks.any? { |task| task.in_progress? || task.complete? }
             return 'in-progress'
+            #warning
         else
             return 'not-started'
+            #danger
         end
     end
     
