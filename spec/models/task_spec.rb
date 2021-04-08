@@ -7,61 +7,50 @@ RSpec.describe Task, type: :model do
   describe "#methods" do
     describe "badge_color" do
       context "when case of task status is 'not-started'" do
+        let!(:task) { FactoryBot.create(:task, :not_started) }
         it "should return 'danger'" do
-          user = User.create(email: "elijah@elijah.com", username: "elijaharc", first_name: "Elijah", last_name: "Arc", password: 'password')
-          category = Category.create(category_name: 'test1', user_id: user.id)
-          task = Task.create(item: 'test1', status: 'not-started', category_id: category.id)
           expect(task.badge_color).to eq 'danger'
         end
       end
 
       context "when case of task status is 'in-progress'" do
+        let!(:task) { FactoryBot.create(:task, :in_progress) }
         it "should return 'warning'" do
-          user = User.create(email: "elijah@elijah.com", username: "elijaharc", first_name: "Elijah", last_name: "Arc", password: 'password')
-          category = Category.create(category_name: 'test1', user_id: user.id)
-          task = Task.create(item: 'test1', status: 'in-progress', category_id: category.id)
           expect(task.badge_color).to eq 'warning'
         end
       end
 
       context "when case of task status is 'completed'" do
+        let!(:task) { FactoryBot.create(:task, :completed) }
         it "should return 'success'" do
-          user = User.create(email: "elijah@elijah.com", username: "elijaharc", first_name: "Elijah", last_name: "Arc", password: 'password')
-          category = Category.create(category_name: 'test1', user_id: user.id)
-          task = Task.create(item: 'test1', status: 'completed', category_id: category.id)
           expect(task.badge_color).to eq 'success'
         end
       end
     end
 
     describe "complete?" do
-      context "any task in a category" do
-        it "should set task's status to 'completed'" do
-          user = User.create(email: "elijah@elijah.com", username: "elijaharc", first_name: "Elijah", last_name: "Arc", password: 'password')
-          category = Category.create(category_name: 'test1', user_id: user.id)
-          task = Task.create(item: 'test1', status: 'completed', category_id: category.id)
+      context "a task in a category is marked 'completed'" do
+        let!(:task) { FactoryBot.create(:task, :completed) }
+        it "task's status should be 'completed'" do
+          task2 = Task.create(item: 'test2', status: 'not-started', category_id: task.category.id)
           expect(task.complete?).to be_truthy
         end
       end
     end
 
     describe "in_progress?" do
-      context "any task in a category" do
-        it "should set task's status to 'in-progress'" do
-          user = User.create(email: "elijah@elijah.com", username: "elijaharc", first_name: "Elijah", last_name: "Arc", password: 'password')
-          category = Category.create(category_name: 'test1', user_id: user.id)
-          task = Task.create(item: 'test1', status: 'in-progress', category_id: category.id)
+      context "a task in a category is marked 'in-progress'" do
+        let!(:task) { FactoryBot.create(:task, :in_progress) }
+        it "task's status should be 'in-progress'" do
           expect(task.in_progress?).to be_truthy
         end
       end
     end
 
-    describe "in_progress?" do
-      context "any task in a category" do
-        it "should set task's status to 'not-started'" do
-          user = User.create(email: "elijah@elijah.com", username: "elijaharc", first_name: "Elijah", last_name: "Arc", password: 'password')
-          category = Category.create(category_name: 'test1', user_id: user.id)
-          task = Task.create(item: 'test1', status: 'not-started', category_id: category.id)
+    describe "not-started?" do
+      context "a task in a category is marked 'not-started'" do
+        let!(:task) { FactoryBot.create(:task, :not_started) }
+        it "task's status should be 'not-started'" do
           expect(task.not_started?).to be_truthy
         end
       end
