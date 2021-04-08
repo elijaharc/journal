@@ -1,6 +1,9 @@
 FactoryBot.define do
-    factory :user do
-    #   username { "Test Journal" }
-    #   description { "Lorem Ipsum" }
-    end
+  factory :user do
+    username { "test_user" }
+    email { "test@email.com" }
+    first_name { "first" }
+    last_name { "last" }
+    password { "password" }
   end
+end
