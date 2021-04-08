@@ -7,21 +7,21 @@ RSpec.describe Task, type: :model do
   describe "#methods" do
     describe "badge_color" do
       context "when case of task status is 'not-started'" do
-        let!(:task) { FactoryBot.create(:task, :not_started) }
+        let!(:task) { FactoryBot.create(:not_started) }
         it "should return 'danger'" do
           expect(task.badge_color).to eq 'danger'
         end
       end
 
       context "when case of task status is 'in-progress'" do
-        let!(:task) { FactoryBot.create(:task, :in_progress) }
+        let!(:task) { FactoryBot.create(:in_progress) }
         it "should return 'warning'" do
           expect(task.badge_color).to eq 'warning'
         end
       end
 
       context "when case of task status is 'completed'" do
-        let!(:task) { FactoryBot.create(:task, :completed) }
+        let!(:task) { FactoryBot.create(:completed) }
         it "should return 'success'" do
           expect(task.badge_color).to eq 'success'
         end
@@ -30,7 +30,7 @@ RSpec.describe Task, type: :model do
 
     describe "complete?" do
       context "a task in a category is marked 'completed'" do
-        let!(:task) { FactoryBot.create(:task, :completed) }
+        let!(:task) { FactoryBot.create(:completed) }
         it "task's status should be 'completed'" do
           task2 = Task.create(item: 'test2', status: 'not-started', category_id: task.category.id)
           expect(task.complete?).to be_truthy
@@ -40,7 +40,7 @@ RSpec.describe Task, type: :model do
 
     describe "in_progress?" do
       context "a task in a category is marked 'in-progress'" do
-        let!(:task) { FactoryBot.create(:task, :in_progress) }
+        let!(:task) { FactoryBot.create(:in_progress) }
         it "task's status should be 'in-progress'" do
           expect(task.in_progress?).to be_truthy
         end
@@ -49,7 +49,7 @@ RSpec.describe Task, type: :model do
 
     describe "not-started?" do
       context "a task in a category is marked 'not-started'" do
-        let!(:task) { FactoryBot.create(:task, :not_started) }
+        let!(:task) { FactoryBot.create(:not_started) }
         it "task's status should be 'not-started'" do
           expect(task.not_started?).to be_truthy
         end

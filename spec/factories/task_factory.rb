@@ -4,15 +4,15 @@ FactoryBot.define do
     description { "Lorem Ipsum Item" }
     association :category
 
-    trait :not_started do
+    factory :not_started do
         status {'not-started'}
       end
 
-    trait :in_progress do
+    factory :in_progress do
         status {'in-progress'}
       end
 
-    trait :completed do
+    factory :completed do
         status {'completed'}
       end
   end
