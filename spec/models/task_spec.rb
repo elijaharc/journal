@@ -32,7 +32,6 @@ RSpec.describe Task, type: :model do
       context "a task in a category is marked 'completed'" do
         let!(:task) { FactoryBot.create(:completed) }
         it "task's status should be 'completed'" do
-          task2 = Task.create(item: 'test2', status: 'not-started', category_id: task.category.id)
           expect(task.complete?).to be_truthy
         end
       end
