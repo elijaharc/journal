@@ -30,9 +30,13 @@
         <p id='helloHome' class="text-dark display-2 text-center mx-4 my-3">Hello, <span class='m-0 p-0'><%= current_user.first_name.strip %></span>!</p>
 
         <% if notice.present? %>
-            <small class='text-success text-center mt-2'>
+            <small class='text-success text-center'>
                 <%= notice %>
-                
+            </small>
+        <% end %>
+        <% if alert.present? %>
+            <small class='text-danger text-center'>
+                <%= alert %>
             </small>
         <% end %>
         <p class="text-secondary mb-4 mt-2 text-center">What do you want to do today?</p>

@@ -1,3 +1,13 @@
+<% if notice.present? %>
+    <div class="alert alert-success text-center mt-3 mb-0" role="alert">
+        <%= notice %>
+    </div>
+<% elsif alert.present? %>
+    <div class="alert alert-danger text-center mt-3 mb-0" role="alert">
+        <%= alert %>
+    </div>
+<% end %>
+
 <% if @tasks.count > 0 %>
   <div class="card mt-md-4 mt-3 shadow rounded">
     <div class="card-body p-4">
