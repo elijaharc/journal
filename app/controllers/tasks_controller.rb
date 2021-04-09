@@ -57,7 +57,7 @@ class TasksController < ApplicationController
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
     @task.destroy
-    redirect_back(fallback_location: root_path) 
+    redirect_back(fallback_location: root_path, alert: "Entry was deleted.")
   end
 
   private
