@@ -30,7 +30,7 @@ class TasksController < ApplicationController
     @task = @category.tasks.build(task_params)
 
     if @task.save
-        redirect_to category_tasks_path  
+        redirect_to category_tasks_path, notice: "Entry successfully created."
     else
        render action: 'new'
     end
@@ -40,11 +40,11 @@ class TasksController < ApplicationController
   def update
     if @task.update(task_params)
       if @task.saved_change_to_attribute?("item") || @task.saved_change_to_attribute?("description")
-        redirect_to session.delete(:return_to), notice: "Task was successfully updated."
+        redirect_to session.delete(:return_to), notice: "Entry was successfully updated."
       elsif @task.saved_change_to_attribute?("status")
-        redirect_to session.delete(:return_to), notice: "Task status was successfully updated."
+        redirect_to session.delete(:return_to), notice: "Status was successfully updated."
       elsif @task.saved_change_to_attribute?("deadline")
-        redirect_to session.delete(:return_to), notice: "Task deadline was successfully changed."
+        redirect_to session.delete(:return_to), notice: "Deadline was successfully changed."
       else
         redirect_back(fallback_location: root_path)
       end
