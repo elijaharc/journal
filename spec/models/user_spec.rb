@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
     it { expect(described_class.new).to validate_presence_of :username }
+    it { should_not allow_value(" ").for(:username) }
     it { expect(described_class.new).to validate_presence_of :first_name }
     it { expect(described_class.new).to validate_length_of :first_name }
     it { expect(described_class.new).to validate_presence_of :last_name }
