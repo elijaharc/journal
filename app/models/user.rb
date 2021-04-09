@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :tasks, through: :categories
   validates :username, :first_name, :last_name, presence: true
   validates :username, uniqueness: true 
+  validates :username, format: { without: /\s/, message: 'cannot contain spaces' }
   validates :first_name, length: { maximum: 25 }
   validates_confirmation_of :password
   ORDER_CATEGORY_OPTIONS = [
@@ -13,5 +14,4 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
 end
