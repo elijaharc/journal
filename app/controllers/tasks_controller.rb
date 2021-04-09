@@ -30,7 +30,7 @@ class TasksController < ApplicationController
     @task = @category.tasks.build(task_params)
 
     if @task.save
-        redirect_to category_tasks_path, notice: "Entry successfully created."
+        redirect_to category_tasks_path, notice: "Entry was successfully created."
     else
        render action: 'new'
     end
