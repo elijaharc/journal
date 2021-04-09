@@ -20,7 +20,13 @@ class UsersController < ApplicationController
   # PATCH/PUT /categories/1 or /categories/1.json
   def update
       if @current_user.update(user_params)
-        redirect_to categories_path
+        if @current_user.saved_change_to_attribute?("first_name") || @current_user.saved_change_to_attribute?("last_name")
+          redirect_to home_path, notice: "Your name has been updated successfully."
+        elsif @current_user.saved_change_to_attribute?("order_categories_by")
+          redirect_to categories_path, notice: "Journal sorting changed."
+        else
+          redirect_back(fallback_location: root_path)
+        end
       else
         render action: 'edit'
       end

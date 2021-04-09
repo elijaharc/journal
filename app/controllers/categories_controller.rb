@@ -41,7 +41,13 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1 or /categories/1.json
   def update
     if @category.update(category_params)
-      redirect_to category_tasks_path(@category)
+      if @category.saved_change_to_attribute?("category_name") || @category.saved_change_to_attribute?("description")
+        redirect_to session.delete(:return_to), notice: "Journal was successfully updated."
+      elsif @category.saved_change_to_attribute?("order_by")
+        redirect_to category_tasks_path(@category), notice: "Task sorting changed."
+      else
+        redirect_back(fallback_location: root_path)
+      end
     else
       render action: 'edit'
     end

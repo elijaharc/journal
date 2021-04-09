@@ -39,7 +39,16 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
     if @task.update(task_params)
-      redirect_to session.delete(:return_to)
+      if @task.saved_change_to_attribute?("item") || @task.saved_change_to_attribute?("description")
+        redirect_to session.delete(:return_to), notice: "Task was successfully updated."
+      elsif @task.saved_change_to_attribute?("status")
+        redirect_to session.delete(:return_to), notice: "Task status was successfully updated."
+      elsif @task.saved_change_to_attribute?("deadline")
+        redirect_to session.delete(:return_to), notice: "Task deadline was successfully changed."
+      else
+        redirect_back(fallback_location: root_path)
+      end
+      # redirect_to session.delete(:return_to)
     else
        render action: 'edit'
     end
