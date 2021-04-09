@@ -7,17 +7,30 @@
         <%= alert %>
     </div>
 <% end %>
-    <h1>Your Profile</h1>
-    <p><%= current_user.username %></p>
-    <p><%= current_user.first_name %></p>
-     <div class="field">
+<div class='d-flex flex-column justify-content-between align-items-center'>
+  <div class='col-md-6 col-11 mt-lg-5 mt-4'>
+    <div class='card'>
+      <div class="card-body shadow-lg rounded px-5 py-4">
+      <h1 class='card-title display-5 mb-4'>Your Profile</h1>
+      <%= form_for(current_user) do |f| %>
+        <div class="field">
             <%= f.label :first_name %>
             <%= f.text_field :first_name, class: 'w-100 mb-2 form-control' %>
         </div>
 
-            <div class="field">
-              <%= f.label :last_name %>
-              <%= f.text_field :last_name, class: 'w-100 mb-2 form-control' %>
-            </div>
-    <span><%= link_to 'Edit profile', edit_user_registration_path %></span>
-    
+        <div class="field">
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name, class: 'w-100 mb-2 form-control' %>
+        </div>
+      
+        <div class="actions text-center">
+            <%= f.submit "Update Name", class: 'btn btn-success btn-sm mb-3 mt-2 shadow rounded' %>
+        </div>
+      <% end %>   
+      <p class='text-center mb-1 mt-2'><%= link_to 'Edit Account Credentials', edit_user_registration_path, class: 'text-decoration-none' %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+

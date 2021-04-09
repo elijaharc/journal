@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
-    before_action :authenticate_user!, only: [:tasks, :search]
+
+    before_action :authenticate_user!, only: [:tasks, :search, :profile]
     #before anyone can go to the views of each method or route in this controller, they must first be logged in. I'm using it only on profile.
     def home
     end
@@ -7,8 +8,8 @@ class PagesController < ApplicationController
     def about
     end
 
-    # def profile
-    # end
+    def profile
+    end
 
     def tasks
         @tasks = current_user.tasks.order('deadline asc')
