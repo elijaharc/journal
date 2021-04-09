@@ -1,0 +1,66 @@
+<div class="card mt-md-4 mt-3 shadow rounded">
+    <div class="card-body p-4">
+        <h1 class="text-center mt-2 display-5 fw-normal mb-0 ">Showing All Entries</h1>
+        <p class='text-center mt-1 mb-4 text-muted'><small>Ordered by: Earliest deadline</small></p>
+
+        <div class='d-flex justify-content-between align-items-center flex-column flex-md-row'>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb fw-light">
+                <li class="breadcrumb-item"><%= link_to 'Home', home_path, class: "text-decoration-none" %></li>
+                <li class="breadcrumb-item active" aria-current="journals">All Entries</li>
+            </ol>   
+        </nav>
+          <div class='d-flex justify-content-end'>
+          <%= search_form_for @q do |f| %>
+            <div class='input-group input-group-sm h-25 w-100 mb-3'>      
+              <%= f.search_field :item_or_description_or_category_category_name_cont, placeholder: 'Search...', class:'form-control' %>
+              <%= f.submit class: 'btn btn-primary', id: 'button-addon2'%>
+            </div>
+          <% end %>
+            <%# <form class="input-group input-group-sm h-25 w-100 mb-3" action='/search'>
+              <input type="text" class="form-control" name='q' placeholder="Search for an entry" aria-label="Search" aria-describedby="button-addon2">
+              <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
+            </form> %>
+          </div>
+        </div>
+
+  <% @tasks.each do |task| %>
+    <% if task.persisted? %>
+      <div class="card mb-2 shadow-sm task-card">
+        <div class="card-body py-2">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="badge mt-2 bg-<%= task.badge_color %> mb-2 text-center"><%= link_to task.status, edit_category_task_path(task.category, task), class: 'text-white text-decoration-none' %></span>
+            <div class='my-2'>
+              <%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_category_task_path(task.category, task), { class: 'btn btn-secondary btn-sm', 'data-bs-toggle'=> 'tooltip', 'data-bs-placement'=> 'bottom', 'title' => 'Edit task' } %>
+              <%= link_to '<i class="bi bi-trash"></i>'.html_safe, [task.category, task], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm', 'data-bs-toggle'=> 'tooltip', 'data-bs-placement'=> 'bottom', 'title' => 'Delete task' %>
+            </div>
+          </div>
+
+          <div class='d-flex justify-content-between align-items-center col-12'>
+            <h5 class="card-title m-0">
+              <%= link_to task.item, category_tasks_path(task.category_id), class: 'text-decoration-none' %>  
+            </h5>
+            <div class='d-flex flex-column flex-md-row justify-content-start align-items-end col-5 col-md-6 justify-content-md-end align-items-md-start'>
+              <small class='d-flex justify-content-end me-md-1'><%= link_to '<i class="bi bi-calendar-check"></i>'.html_safe, edit_category_task_path(task.category, task), class: 'text-decoration-none text-dark', id: 'calendarIcon' %></small>
+              <small data-bs-toggle="tooltip" data-bs-placement="bottom" title="Task deadline">
+              <% if task.deadline.present? %>
+                <%= link_to task.deadline.strftime("%B %d, %Y"), edit_category_task_path(task.category, task), class: 'text-decoration-none text-dark', id: 'addDeadline' %>
+              <% else %>
+                <%= link_to 'Add deadline', edit_category_task_path(task.category, task), class: 'text-decoration-none text-dark', id: 'addDeadline' %>
+              <% end %>
+              </small>
+            </div>
+          </div>
+          <small class='text-dark'><b>Category: </b><%= link_to task.category.category_name, categories_path(task.category), class: 'text-dark text-decoration-none', id: 'addDeadline' %></small>
+          <p class="mb-2 mt-2 text-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Task description"><%= truncate(task.description, length: 50) %></p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+
+    </div>
+  </div>
+  <div class="text-center mt-3 mb-4">
+      <%= link_to 'Back to Home', home_path, class: 'fw-light text-decoration-none' %>
+  </div>
