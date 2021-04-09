@@ -22,10 +22,16 @@
             </ol>   
         </nav>
           <div class='d-flex justify-content-end'>
-            <form class="input-group input-group-sm h-25 w-100 mb-3" action='/search'>
+          <%= search_form_for @q do |f| %>
+            <div class='input-group input-group-sm h-25 w-100 mb-3'>      
+              <%= f.search_field :item_or_description_or_category_category_name_cont, placeholder: 'Search...', class:'form-control' %>
+              <%= f.submit class: 'btn btn-primary', id: 'button-addon2'%>
+            </div>
+          <% end %>
+            <%# <form class="input-group input-group-sm h-25 w-100 mb-3" action='/search'>
               <input type="text" class="form-control" name='q' placeholder="Search for an entry" aria-label="Search" aria-describedby="button-addon2">
               <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
-            </form>
+            </form> %>
           </div>
         </div>
 

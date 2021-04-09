@@ -12,10 +12,14 @@ class PagesController < ApplicationController
     end
 
     def tasks
-        @tasks = current_user.tasks.order('deadline asc')
+        # @tasks = current_user.tasks.order('deadline asc')
+        @q = current_user.tasks.ransack(params[:q])
+        @tasks = @q.result(distinct: true).includes(:category).order('deadline asc')
     end
 
-    def search
-        @tasks = current_user.tasks.where('item LIKE ?', '%' + params[:q] + '%').order('deadline asc')
-    end
+    # def search
+    #     tasks
+    #     render :tasks
+    #     # @tasks = current_user.tasks.where('item LIKE ?', '%' + params[:q] + '%').order('deadline asc')
+    # end
 end
