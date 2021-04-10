@@ -117,4 +117,17 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "example.com",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: ENV["dearmejournalreset@gmail.com"],
+    password:ENV["dearmejournalpassword"]
+  }
+
+  config.action_mailer.default_url_options = { :host => 'https://dear-me-journal.herokuapp.com' }
+
 end
