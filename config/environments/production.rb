@@ -124,10 +124,10 @@ Rails.application.configure do
     domain: "example.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["dearmejournalreset@gmail.com"],
-    password:ENV["dearmejournalpassword"]
+    user_name: ENV["GMAIL_USERNAME"],
+    password:ENV["GMAIL_PASSWORD"]
   }
-
-  config.action_mailer.default_url_options = { :host => 'https://dear-me-journal.herokuapp.com' }
+  # doesn't have to be Heroku, but you get the idea.
+  config.action_mailer.default_url_options = { :host => 'https://dear-me-journal.herokuapp.com/' }
 
 end
