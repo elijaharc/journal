@@ -127,7 +127,7 @@ Rails.application.configure do
     user_name: ENV["GMAIL_USERNAME"],
     password:ENV["GMAIL_PASSWORD"]
   }
-  # doesn't have to be Heroku, but you get the idea.
+  
   config.action_mailer.default_url_options = { :host => 'https://dear-me-journal.herokuapp.com/' }
 
 end
