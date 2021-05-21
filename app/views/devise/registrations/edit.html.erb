@@ -17,6 +17,11 @@
               <%= f.email_field :email, autocomplete: "email", class: 'w-100 mb-2 form-control' %>
             </div>
 
+            <div class="field">
+              <%= f.label :language %>
+              <%= f.select :language, User::LANGUAGE, {}, class: 'w-100 mb-2 form-control form-select' %>
+            </div>
+
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
             <% end %>

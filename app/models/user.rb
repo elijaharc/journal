@@ -10,6 +10,7 @@ class User < ApplicationRecord
     ['Alphabetical (Ascending)', 'category_name asc'], ['Alphabetical (Descending)', 'category_name desc'],
     ['First Created', 'created_at asc'], ['Last Created', 'created_at desc'], ['Last Edited', 'updated_at desc']
   ].freeze
+  LANGUAGE = [["English", "en"], ["Tagalog", "tl"]].freeze
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

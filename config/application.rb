@@ -31,5 +31,11 @@ module Journal
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    #Translate
+    config.i18n.available_locales = [:en, :tl]
+    config.i18n.default_locale = :en
+    # This is in case translation is not found, it will display English
+    config.i18n.fallbacks = true
   end
 end
